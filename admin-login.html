@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Admin Login - FeedbackHub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body class="login-page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <h1>
+                Feedback<span>Hub</span>
+            </h1>
+
+        </div>
+
+
+        <nav class="navbar">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="index.html#about">
+                About
+            </a>
+
+            <a href="index.html#features">
+                Features
+            </a>
+
+            <a href="login.html">
+                User Login
+            </a>
+
+            <a href="admin-login.html">
+                Admin Login
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ADMIN LOGIN -->
+
+    <main class="login-page-container">
+
+        <div class="login-box">
+
+            <div class="login-icon">
+                🛡️
+            </div>
+
+
+            <h2>
+                Admin Login
+            </h2>
+
+
+            <p class="login-subtitle">
+                Login to the FeedbackHub Admin Panel
+            </p>
+
+
+            <form onsubmit="adminLogin(event)">
+
+
+                <!-- USERNAME -->
+
+                <div class="input-group">
+
+                    <label for="adminUsername">
+                        Admin Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="adminUsername"
+                        placeholder="Enter admin username"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="input-group">
+
+                    <label for="adminPassword">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="adminPassword"
+                        placeholder="Enter admin password"
+                        required
+                    >
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="login-btn"
+                >
+                    Admin Login
+                </button>
+
+            </form>
+
+
+            <a
+                href="index.html"
+                class="back-home"
+            >
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 FeedbackHub. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function adminLogin(event) {
+
+            event.preventDefault();
+
+
+            let username =
+                document.getElementById("adminUsername").value.trim();
+
+            let password =
+                document.getElementById("adminPassword").value.trim();
+
+
+            /*
+                Demo Admin Credentials
+
+                Username: admin
+                Password: admin123
+            */
+
+            if (
+                username === "admin" &&
+                password === "admin123"
+            ) {
+
+                localStorage.setItem(
+                    "adminLoggedIn",
+                    "true"
+                );
+
+
+                alert(
+                    "Admin login successful!"
+                );
+
+
+                window.location.href =
+                    "admin.html";
+
+            }
+
+            else {
+
+                alert(
+                    "Invalid admin username or password."
+                );
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>User Module - FeedbackHub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <h1>
+                Feedback<span>Hub</span>
+            </h1>
+
+        </div>
+
+
+        <nav class="navbar">
+
+            <!-- DASHBOARD -->
+
+            <a href="user.html">
+                Dashboard
+            </a>
+
+
+            <!-- GIVE FEEDBACK -->
+
+            <a href="feedback.html">
+                Give Feedback
+            </a>
+
+
+            <!-- VIEW FEEDBACK -->
+
+            <a href="view-feedback.html">
+                View Feedback
+            </a>
+
+
+            <!-- PROFILE -->
+
+            <a href="#profile">
+                Profile
+            </a>
+
+
+            <!-- ADMIN LOGIN -->
+
+            <a href="admin-login.html">
+                Admin Login
+            </a>
+
+
+            <!-- LOGOUT -->
+
+            <a
+                href="index.html"
+                onclick="logoutUser()"
+            >
+                Logout
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ================= USER DASHBOARD ================= -->
+
+    <section class="user-dashboard">
+
+
+        <div class="dashboard-heading">
+
+            <h2>
+                Welcome to User Module
+            </h2>
+
+            <p>
+                Manage your feedback and share your experience.
+            </p>
+
+        </div>
+
+
+
+        <!-- ================= USER CARDS ================= -->
+
+        <div class="user-cards">
+
+
+            <!-- SUBMIT FEEDBACK CARD -->
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    📝
+                </div>
+
+
+                <h3>
+                    Submit Feedback
+                </h3>
+
+
+                <p>
+                    Share your reviews, ratings, and
+                    suggestions with us.
+                </p>
+
+
+                <a
+                    href="feedback.html"
+                    class="user-btn"
+                >
+                    Give Feedback
+                </a>
+
+            </div>
+
+
+
+            <!-- VIEW FEEDBACK CARD -->
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    ⭐
+                </div>
+
+
+                <h3>
+                    View Feedback
+                </h3>
+
+
+                <p>
+                    View feedback, ratings, and
+                    suggestions submitted by users.
+                </p>
+
+
+                <a
+                    href="view-feedback.html"
+                    class="user-btn"
+                >
+                    View Feedback
+                </a>
+
+            </div>
+
+
+
+            <!-- PROFILE CARD -->
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    👤
+                </div>
+
+
+                <h3>
+                    My Profile
+                </h3>
+
+
+                <p>
+                    View and manage your user profile
+                    information.
+                </p>
+
+
+                <a
+                    href="#profile"
+                    class="user-btn"
+                >
+                    View Profile
+                </a>
+
+            </div>
+
+
+
+            <!-- ADMIN LOGIN CARD -->
+
+            <div class="user-card">
+
+                <div class="user-icon">
+                    🛡️
+                </div>
+
+
+                <h3>
+                    Admin Login
+                </h3>
+
+
+                <p>
+                    Login to the admin panel to manage
+                    and analyze user feedback.
+                </p>
+
+
+                <a
+                    href="admin-login.html"
+                    class="user-btn"
+                >
+                    Admin Login
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PROFILE ================= -->
+
+    <section
+        class="profile-section"
+        id="profile"
+    >
+
+
+        <div class="section-title">
+
+            <h2>
+                My Profile
+            </h2>
+
+        </div>
+
+
+
+        <div class="profile-card">
+
+
+            <div class="profile-icon">
+                👤
+            </div>
+
+
+            <h3>
+                User Profile
+            </h3>
+
+
+            <p>
+                Welcome to your FeedbackHub profile.
+            </p>
+
+
+            <p>
+                Email:
+                <strong id="userEmail">
+                    Loading...
+                </strong>
+            </p>
+
+
+            <p>
+                You can manage your feedback and account
+                information from this module.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 FeedbackHub. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+
+        /* ================= USER EMAIL ================= */
+
+        let loggedInUser =
+            localStorage.getItem("loggedInUser");
+
+
+        if (loggedInUser) {
+
+            document.getElementById(
+                "userEmail"
+            ).textContent =
+                loggedInUser;
+
+        }
+
+        else {
+
+            document.getElementById(
+                "userEmail"
+            ).textContent =
+                "Not logged in";
+
+        }
+
+
+
+        /* ================= LOGOUT ================= */
+
+        function logoutUser() {
+
+            localStorage.removeItem(
+                "loggedInUser"
+            );
+
+        }
+
+
+    </script>
+
+
+</body>
+
+</html>

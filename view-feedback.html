@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>View Feedback - FeedbackHub</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+
+        .feedback-container {
+
+            max-width: 1000px;
+
+            margin: 50px auto;
+
+            padding: 20px;
+
+        }
+
+
+        .feedback-container h2 {
+
+            text-align: center;
+
+            color: #1f3b64;
+
+            margin-bottom: 30px;
+
+        }
+
+
+        .feedback-card {
+
+            background: white;
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 4px 15px rgba(0, 0, 0, 0.1);
+
+        }
+
+
+        .feedback-card h3 {
+
+            color: #1f3b64;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .feedback-email {
+
+            color: #777;
+
+            font-size: 14px;
+
+        }
+
+
+        .rating {
+
+            color: #f5a623;
+
+            font-size: 20px;
+
+            margin: 10px 0;
+
+        }
+
+
+        .feedback-message {
+
+            color: #444;
+
+            line-height: 1.6;
+
+        }
+
+
+        .feedback-date {
+
+            color: #999;
+
+            font-size: 13px;
+
+            margin-top: 10px;
+
+        }
+
+
+        .no-feedback {
+
+            text-align: center;
+
+            background: white;
+
+            padding: 40px;
+
+            border-radius: 12px;
+
+            color: #777;
+
+        }
+
+
+        .button-container {
+
+            display: flex;
+
+            justify-content: center;
+
+            gap: 15px;
+
+            margin-top: 30px;
+
+            flex-wrap: wrap;
+
+        }
+
+
+        .back-button {
+
+            display: inline-block;
+
+            padding: 12px 25px;
+
+            text-align: center;
+
+            background: #1f3b64;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 6px;
+
+        }
+
+
+        .back-button:hover {
+
+            opacity: 0.9;
+
+        }
+
+    </style>
+
+</head>
+
+
+<body class="login-page">
+
+
+    <!-- HEADER -->
+
+    <header class="header">
+
+        <div class="logo">
+
+            <h1>
+                Feedback<span>Hub</span>
+            </h1>
+
+        </div>
+
+
+        <nav class="navbar">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="user.html">
+                Dashboard
+            </a>
+
+            <a href="feedback.html">
+                Give Feedback
+            </a>
+
+            <a href="view-feedback.html">
+                View Feedback
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- FEEDBACK DISPLAY -->
+
+    <main class="feedback-container">
+
+        <h2>
+            User Feedback
+        </h2>
+
+
+        <div id="feedbackList"></div>
+
+
+        <div class="button-container">
+
+            <a
+                href="feedback.html"
+                class="back-button"
+            >
+                + Give Feedback
+            </a>
+
+
+            <a
+                href="user.html"
+                class="back-button"
+            >
+                ← Dashboard
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        function escapeHTML(text) {
+
+            let div =
+                document.createElement("div");
+
+            div.textContent = text;
+
+            return div.innerHTML;
+
+        }
+
+
+        function displayFeedback() {
+
+            let feedbackList =
+                JSON.parse(
+                    localStorage.getItem("feedbackList")
+                ) || [];
+
+
+            let container =
+                document.getElementById("feedbackList");
+
+
+            // No feedback
+
+            if (feedbackList.length === 0) {
+
+                container.innerHTML = `
+
+                    <div class="no-feedback">
+
+                        <h3>
+                            No Feedback Yet
+                        </h3>
+
+                        <p>
+                            Users have not submitted
+                            any feedback.
+                        </p>
+
+                    </div>
+
+                `;
+
+                return;
+
+            }
+
+
+            container.innerHTML = "";
+
+
+            // Display every feedback
+
+            feedbackList.forEach(function(feedback) {
+
+
+                let stars =
+                    "⭐".repeat(
+                        Number(feedback.rating)
+                    );
+
+
+                let card = `
+
+                    <div class="feedback-card">
+
+                        <h3>
+                            ${escapeHTML(feedback.name)}
+                        </h3>
+
+
+                        <p class="feedback-email">
+
+                            ${escapeHTML(feedback.email)}
+
+                        </p>
+
+
+                        <div class="rating">
+
+                            ${stars}
+
+                        </div>
+
+
+                        <p class="feedback-message">
+
+                            ${escapeHTML(feedback.message)}
+
+                        </p>
+
+
+                        <p class="feedback-date">
+
+                            Submitted on:
+                            ${escapeHTML(feedback.date)}
+
+                        </p>
+
+                    </div>
+
+                `;
+
+
+                container.innerHTML += card;
+
+            });
+
+        }
+
+
+        // Load feedback when page opens
+
+        displayFeedback();
+
+    </script>
+
+</body>
+
+</html>
